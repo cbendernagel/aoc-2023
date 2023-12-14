@@ -17,19 +17,18 @@ class Part1 {
                 for(int i = 0; i < line.length; i++) {
                     if(Character.isDigit(line[i])) {
                         if(first == -1) {
-                            first = line[i] - 48;
+                            first = line[i] - '0';
                         }
 
-                        last = line[i] - 48;
+                        last = line[i] - '0';
                     }
                 }
 
                 lineNum = ((first * 10) + last);
                 sum += lineNum;
-                
-                System.out.println(lineNum + " - " + sum);
             }
 
+            System.out.println(sum);
             reader.close();
         }
         catch (FileNotFoundException e) {

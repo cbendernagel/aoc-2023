@@ -9,7 +9,7 @@ class Part2 {
 
     public static void main(String[] args) {
         try {
-            File input = new File("1/input.txt");
+            File input = new File("./input.txt");
             Scanner reader = new Scanner(input);
             String strPattern = "^(one|two|three|four|five|six|seven|eight|nine|ten)";
             Pattern pattern = Pattern.compile(strPattern, Pattern.CASE_INSENSITIVE);
@@ -24,9 +24,9 @@ class Part2 {
                     char character = line.charAt(i);
                     if(Character.isDigit(character)) {
                         if(first == -1) {
-                            first = character - 48;
+                            first = character - '0';
                         }
-                        last = character - 48;
+                        last = character - '0';
                     } else {
                         // regex check
                         matcher = pattern.matcher(line.substring(i));
