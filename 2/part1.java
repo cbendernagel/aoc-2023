@@ -5,6 +5,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import java.util.HashMap;
+
 class Part1 {
 
     public static void main(String[] args) {
@@ -12,12 +14,16 @@ class Part1 {
             File input = new File("./input.txt");
             Scanner reader = new Scanner(input);
 
-            int redMax = 12, greenMax = 13, blueMax = 14, total = 0;
+            HashMap<String, Integer> map = new HashMap<String, Integer>();
+            map.put("red", 12);
+            map.put("green", 13);
+            map.put("blue", 14);
 
             Pattern gamePat = Pattern.compile("^Game [0-9]*", Pattern.CASE_INSENSITIVE);
             Pattern colorPat = Pattern.compile("[0-9]* (red|green|blue)", Pattern.CASE_INSENSITIVE);
             Matcher matcher;
 
+            int total = 0;
             while(reader.hasNextLine()) {
                 String line = reader.nextLine();
                 matcher = gamePat.matcher(line);
@@ -28,23 +34,9 @@ class Part1 {
                     matcher = colorPat.matcher(line);
                     while(matcher.find()) {
                         String[] play = matcher.group().split(" ");
-                        switch(play[1]){
-                            case "red":
-                                if(Integer.parseInt(play[0]) > redMax) {
-                                    validGame = false;
-                                }
-                                break;
-                            case "green":
-                                if(Integer.parseInt(play[0]) > greenMax) {
-                                    validGame = false;
-                                }
-                                break;
-                            case "blue":
-                                if(Integer.parseInt(play[0]) > blueMax) {
-                                    validGame = false;
-                                }
-                                break;
-                        }
+
+                        if(Integer.parseInt(play[0]) > map.get(play[1]))
+                            validGame = false;
                     }
 
                     if(validGame)
