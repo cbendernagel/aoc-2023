@@ -12,7 +12,7 @@ class Part2 {
             File input = new File("./input.txt");
             Scanner reader = new Scanner(input);
 
-            int redMax = 12, greenMax = 13, blueMax = 14, total = 0;
+            int total = 0;
             int redMin, blueMin, greenMin;
 
             Pattern gamePat = Pattern.compile("^Game [0-9]*", Pattern.CASE_INSENSITIVE);
